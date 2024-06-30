@@ -1,5 +1,6 @@
 import hre from "hardhat";
 import { encodeFunctionData, type Address, type Hex } from "viem";
+import { FEE_BPS, FEE_RECEIVER } from "./deploy";
 
 const FANDOMFIGHT_IMPL_ADDRESS = "0xC8f22807A2213AD7BDc7AF046D35Fe214687093d";
 const FANDOMFIGHT_FACTORY_IMPL_ADDRESS =
@@ -35,7 +36,7 @@ async function main() {
           )
         ).abi,
         functionName: "init",
-        args: [FANDOMFIGHT_IMPL_ADDRESS],
+        args: [FANDOMFIGHT_IMPL_ADDRESS, FEE_RECEIVER, FEE_BPS],
       }),
     ];
 

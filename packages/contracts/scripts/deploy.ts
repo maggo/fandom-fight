@@ -1,8 +1,8 @@
 import hre from "hardhat";
 import { encodeFunctionData, type Address, type Hex } from "viem";
 
-const FEE_RECEIVER = "0xA2C8fA8e889418CE2514657289DFA60cF9F285Ba";
-const FEE_BPS = 2000n; // 20%
+export const FEE_RECEIVER = "0xA2C8fA8e889418CE2514657289DFA60cF9F285Ba";
+export const FEE_BPS = 2000n; // 20%
 
 async function main() {
   console.log("Deploying FandomFightFactory…");
