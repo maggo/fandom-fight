@@ -8,9 +8,11 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const frameTags = await getFrameMetadata(
-    `${process.env.VERCEL_URL || "http://localhost:3000"}/frame/${
-      params.contractAddress
-    }`
+    `${
+      process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000"
+    }/frame/${params.contractAddress}`
   );
   return {
     other: frameTags,
