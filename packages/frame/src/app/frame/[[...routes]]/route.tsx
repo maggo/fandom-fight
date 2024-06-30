@@ -3,6 +3,7 @@
 import { bidTransaction } from "@/app/frame/bid";
 import { BannerImage } from "@/app/frame/images/BannerImage";
 import { ChoicesImage } from "@/app/frame/images/ChoicesImage";
+import { OptionImage } from "@/app/frame/images/OptionImage";
 import { Choices } from "@/app/frame/screens/Choices";
 import { Home } from "@/app/frame/screens/Home";
 import { Success } from "@/app/frame/screens/Success";
@@ -32,6 +33,7 @@ app.transaction("/:address/bid/:choice", (ctx) => bidTransaction({ ctx }));
 
 app.image("/:address/images/banner", (ctx) => BannerImage({ ctx }));
 app.image("/:address/images/choices", (ctx) => ChoicesImage({ ctx }));
+app.image("/:address/images/choices/:choiceId", (ctx) => OptionImage({ ctx }));
 
 export const GET = handle(app);
 export const POST = handle(app);
