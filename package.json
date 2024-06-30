@@ -1,0 +1,10 @@
+{
+  "name": "fandom-fight",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "turbo": "^2.0.6"
+  },
+  "packageManager": "pnpm@6.32.4"
+}
