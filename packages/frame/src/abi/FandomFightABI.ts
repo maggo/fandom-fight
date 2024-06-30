@@ -37,6 +37,11 @@ export const FandomFightABI = [
     type: "error",
   },
   {
+    inputs: [],
+    name: "ReentrancyGuardReentrantCall",
+    type: "error",
+  },
+  {
     anonymous: false,
     inputs: [
       {
@@ -92,6 +97,45 @@ export const FandomFightABI = [
     ],
     name: "OwnershipTransferred",
     type: "event",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "x",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "min_x",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "max_x",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "a",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "b",
+        type: "uint256",
+      },
+    ],
+    name: "_mapRange",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
   },
   {
     inputs: [],
@@ -176,12 +220,38 @@ export const FandomFightABI = [
   },
   {
     inputs: [],
-    name: "falloffRate",
+    name: "falloffDuration",
     outputs: [
       {
         internalType: "uint256",
         name: "",
         type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "feeBps",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "feeRecipient",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
       },
     ],
     stateMutability: "view",
@@ -281,13 +351,23 @@ export const FandomFightABI = [
       },
       {
         internalType: "uint256",
-        name: "falloffRate_",
+        name: "falloffDuration_",
         type: "uint256",
       },
       {
         internalType: "address",
         name: "beneficiary_",
         type: "address",
+      },
+      {
+        internalType: "address",
+        name: "feeRecipient_",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "feeBps_",
+        type: "uint256",
       },
     ],
     name: "init",
