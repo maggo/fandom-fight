@@ -46,7 +46,7 @@ export async function Success({ ctx }: { ctx: FrameContext }) {
       </Box>
     ),
     intents: [
-      <Button.Reset>Go to overview</Button.Reset>,
+      <Button.Reset>Reset</Button.Reset>,
       <Button.Link
         href={`${CHAIN.blockExplorers.default.url}/tx/${transactionId}`}
       >

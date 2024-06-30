@@ -51,26 +51,33 @@ export async function Bid({
         padding="24"
         lineHeight="56"
       >
-        <VStack gap="16">
+        <VStack gap="8">
           <Heading align="center" size="18">
-            Option {choice} selected!
+            Option {choice + 1} selected!
           </Heading>
           <Columns gap="32" alignHorizontal="center" alignVertical="center">
-            <Column width="1/2">
+            <Column width="1/2" alignVertical="center">
               <Text size="10">Name:</Text>
               <Text size="10" color="highlight">
                 {currentChoice.title}
               </Text>
-              <Spacer size="12" />
+              <Spacer size="8" />
               <Text size="10">Min donation:</Text>
               <Text size="10" color="highlight">
                 {formatAmount(minimumPrice)} ETH
               </Text>
+              <Spacer size="8" />
+              <Text size="10">URL:</Text>
+              <div style={{ display: "flex" }}>
+                <Text size="10" color="highlight">
+                  {currentChoice.url}
+                </Text>
+              </div>
             </Column>
-            <Column width="1/2">
+            <Column width="1/2" alignVertical="center">
               <Image
                 width="100%"
-                height="96"
+                height="160"
                 objectFit="contain"
                 src={currentChoice.imageURI.replace(
                   "ipfs://",
