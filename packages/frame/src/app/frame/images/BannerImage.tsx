@@ -34,7 +34,7 @@ export async function BannerImage({ ctx }: { ctx: ImageContext }) {
 
   return ctx.res({
     headers: {
-      "Cache-Control": "public, max-age=10",
+      "Cache-Control": "max-age=10",
     },
     image: (
       <Box grow>

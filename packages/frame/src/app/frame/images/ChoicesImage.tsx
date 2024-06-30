@@ -32,7 +32,7 @@ export async function ChoicesImage({ ctx }: { ctx: ImageContext }) {
 
   return ctx.res({
     headers: {
-      "Cache-Control": "public, max-age=0",
+      "Cache-Control": "max-age=0",
     },
     image: (
       <Box
