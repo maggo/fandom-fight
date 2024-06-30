@@ -31,8 +31,10 @@ export async function ChoicesImage({ ctx }: { ctx: ImageContext }) {
   const choices = await fandomFight.read.getAllChoices();
 
   return ctx.res({
-    headers: {
-      "Cache-Control": "max-age=0",
+    imageOptions: {
+      headers: {
+        "Cache-Control": "max-age=5",
+      },
     },
     image: (
       <Box
