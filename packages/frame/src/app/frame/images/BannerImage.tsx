@@ -10,7 +10,7 @@ import { getAddress, getContract, zeroAddress } from "viem";
 
 const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY!);
 
-export async function Banner({ ctx }: { ctx: ImageContext }) {
+export async function BannerImage({ ctx }: { ctx: ImageContext }) {
   const { req } = ctx;
   const address = getAddress(req.param("address") ?? "");
 
@@ -34,7 +34,7 @@ export async function Banner({ ctx }: { ctx: ImageContext }) {
 
   return ctx.res({
     headers: {
-      "Cache-Control": "max-age=10",
+      "Cache-Control": "public, max-age=10",
     },
     image: (
       <Box grow>

@@ -21,7 +21,7 @@ export async function Home({ ctx }: { ctx: FrameContext }) {
   const currentChoice = choices.at(lastBidChoice);
 
   return ctx.res({
-    image: `/${address}/banner`,
+    image: `/${address}/images/banner`,
     intents: [
       <Button action={`/${address}/choices`}>Donate to pick</Button>,
       currentChoice ? (

@@ -1,7 +1,8 @@
 /** @jsxImportSource frog/jsx */
 
 import { bidTransaction } from "@/app/frame/bid";
-import { Banner } from "@/app/frame/images/Banner";
+import { BannerImage } from "@/app/frame/images/BannerImage";
+import { ChoicesImage } from "@/app/frame/images/ChoicesImage";
 import { Choices } from "@/app/frame/screens/Choices";
 import { Home } from "@/app/frame/screens/Home";
 import { Success } from "@/app/frame/screens/Success";
@@ -26,8 +27,11 @@ devtools(app, { serveStatic });
 app.frame("/:address", (ctx) => Home({ ctx }));
 app.frame("/:address/choices", (ctx) => Choices({ ctx }));
 app.frame("/:address/success/:choice", (ctx) => Success({ ctx }));
+
 app.transaction("/:address/bid/:choice", (ctx) => bidTransaction({ ctx }));
-app.image("/:address/banner", (ctx) => Banner({ ctx }));
+
+app.image("/:address/images/banner", (ctx) => BannerImage({ ctx }));
+app.image("/:address/images/choices", (ctx) => ChoicesImage({ ctx }));
 
 export const GET = handle(app);
 export const POST = handle(app);

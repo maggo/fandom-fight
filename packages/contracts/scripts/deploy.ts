@@ -1,6 +1,9 @@
 import hre from "hardhat";
 import { encodeFunctionData, type Address, type Hex } from "viem";
 
+const FEE_RECEIVER = "0xA2C8fA8e889418CE2514657289DFA60cF9F285Ba";
+const FEE_BPS = 2000n; // 20%
+
 async function main() {
   console.log("Deploying FandomFightFactory…");
 
@@ -22,7 +25,7 @@ async function main() {
     encodeFunctionData({
       abi: fandomFightFactoryImpl.abi,
       functionName: "init",
-      args: [fandomFightImpl.address],
+      args: [fandomFightImpl.address, FEE_RECEIVER, FEE_BPS],
     }),
   ];
 
