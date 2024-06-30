@@ -6,7 +6,7 @@ import { client } from "@/config";
 import { formatAddress, formatAmount } from "@/lib/format";
 import { NeynarAPIClient } from "@neynar/nodejs-sdk";
 import { type ImageContext } from "frog";
-import { getAddress, getContract, zeroAddress } from "viem";
+import { getAddress, getContract, zeroAddress, type Address } from "viem";
 
 const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY!);
 
@@ -28,9 +28,7 @@ export async function BannerImage({ ctx }: { ctx: ImageContext }) {
 
   const hasBid = lastBidAddress !== zeroAddress;
 
-  const user = await neynar.fetchBulkUsersByEthereumAddress([lastBidAddress]);
-
-  const userName = Object.values(user).at(0)?.at(0)?.username;
+  const user = hasBid ? await getUser(lastBidAddress) : null;
 
   return ctx.res({
     headers: {
@@ -90,7 +88,9 @@ export async function BannerImage({ ctx }: { ctx: ImageContext }) {
                   Last donation:
                 </Text>
                 <Text align="center" color="highlight" size="10">
-                  {userName ? `@${userName}` : formatAddress(lastBidAddress)}
+                  {user?.username
+                    ? `@${user.username}`
+                    : formatAddress(lastBidAddress)}
                 </Text>
               </VStack>
             </Column>
@@ -99,4 +99,14 @@ export async function BannerImage({ ctx }: { ctx: ImageContext }) {
       </Box>
     ),
   });
+}
+
+async function getUser(address: Address) {
+  if (!address) return null;
+  try {
+    const user = await neynar.fetchBulkUsersByEthereumAddress([address]);
+    return Object.values(user).at(0)?.at(0) ?? null;
+  } catch (e) {
+    return null;
+  }
 }

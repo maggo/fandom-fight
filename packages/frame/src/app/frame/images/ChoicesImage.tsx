@@ -43,26 +43,31 @@ export async function ChoicesImage({ ctx }: { ctx: ImageContext }) {
         padding="24"
         lineHeight="56"
       >
-        <VStack gap="20">
+        <VStack gap="12">
           <Heading align="center" size="18">
             Which is better?
           </Heading>
           <Columns gap="32" alignHorizontal="center">
             {choices.map((choice, i) => (
               <Column width="1/3">
-                <Box marginBottom="4">
-                  <Text align="center" color="text200" size="12">
-                    Option {i + 1}
+                <Text align="center" color="text200" size="12">
+                  Option {i + 1}
+                </Text>
+
+                <Box
+                  textAlign="center"
+                  height="36"
+                  marginTop="4"
+                  marginBottom="4"
+                >
+                  <Text align="center" color="highlight" size="14">
+                    {choice.title}
                   </Text>
                 </Box>
 
-                <Text align="center" color="highlight" size="14">
-                  {choice.title}
-                </Text>
-
                 <Image
                   width="100%"
-                  height="96"
+                  height="80"
                   objectFit="contain"
                   src={choice.imageURI.replace(
                     "ipfs://",
