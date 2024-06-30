@@ -31,10 +31,8 @@ export async function BannerImage({ ctx }: { ctx: ImageContext }) {
   const user = hasBid ? await getUser(lastBidAddress) : null;
 
   return ctx.res({
-    imageOptions: {
-      headers: {
-        "Cache-Control": "max-age=5",
-      },
+    headers: {
+      "cache-control": "max-age=5",
     },
     image: (
       <Box grow>
