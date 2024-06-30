@@ -68,15 +68,19 @@ export async function Choices({ ctx }: { ctx: FrameContext }) {
                   </Text>
                 </Box>
 
-                <Image
-                  width="100%"
-                  height="96"
-                  objectFit="contain"
-                  src={choice.imageURI.replace(
-                    "ipfs://",
-                    "https://ipfs.filebase.io/ipfs/"
-                  )}
-                />
+                <Text align="center" color="highlight" size="14">
+                  {choice.title}
+                </Text>
+
+                {/* <Image
+                    width="100%"
+                    height="96"
+                    objectFit="contain"
+                    src={choice.imageURI.replace(
+                      "ipfs://",
+                      "https://ipfs.filebase.io/ipfs/"
+                    )}
+                  /> */}
               </Column>
             ))}
           </Columns>
