@@ -5,8 +5,9 @@ import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Ini
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
-contract FandomFight is Initializable, OwnableUpgradeable {
+contract FandomFight is Initializable, OwnableUpgradeable, ReentrancyGuard {
     struct Choice {
         string imageURI;
         string title;
@@ -29,6 +30,8 @@ contract FandomFight is Initializable, OwnableUpgradeable {
     uint public falloffDelay;
     uint public falloffDuration;
     address public beneficiary;
+    address public feeRecipient;
+    uint256 public feeBps;
 
     event NewBid(address indexed bidder, uint256 price, uint16 choice);
 
@@ -44,7 +47,9 @@ contract FandomFight is Initializable, OwnableUpgradeable {
         uint bidDelay_,
         uint falloffDelay_,
         uint falloffDuration_,
-        address beneficiary_
+        address beneficiary_,
+        address feeRecipient_,
+        uint256 feeBps_
     ) public initializer {
         __Ownable_init(owner_);
 
@@ -57,6 +62,8 @@ contract FandomFight is Initializable, OwnableUpgradeable {
         falloffDelay = falloffDelay_;
         falloffDuration = falloffDuration_;
         beneficiary = beneficiary_;
+        feeRecipient = feeRecipient_;
+        feeBps = feeBps_;
     }
 
     function getCurrentMinimumPrice() public view returns (uint256) {
@@ -97,7 +104,7 @@ contract FandomFight is Initializable, OwnableUpgradeable {
         return currentDiscountedPrice;
     }
 
-    function bid(uint16 choice) external payable {
+    function bid(uint16 choice) external payable nonReentrant {
         require(choice >= 0 && choice < choices.length, "Invalid choice");
 
         require(
@@ -112,8 +119,21 @@ contract FandomFight is Initializable, OwnableUpgradeable {
             "Bid must be greater than or equal to current minimum price"
         );
 
-        (bool sent, ) = beneficiary.call{value: msg.value}("");
-        require(sent, "Failed to send Ether");
+        // Send fee to feeRecipient
+        uint256 fee = (msg.value * feeBps) / 10000;
+        (bool feeSent, ) = feeRecipient.call{value: fee}("");
+        require(feeSent, "Failed to send fee");
+
+        // Send 10% cashback to last bidder
+        if (lastBid.bidder != address(0)) {
+            uint256 cashback = (msg.value * 1000) / 10000;
+            (bool cashbackSent, ) = lastBid.bidder.call{value: cashback}("");
+            require(cashbackSent, "Failed to send cashback");
+        }
+
+        // Send remainder to beneficiary
+        (bool bidSent, ) = beneficiary.call{value: address(this).balance}("");
+        require(bidSent, "Failed to send bid amount");
 
         lastBid = LastBid({
             bidder: msg.sender,

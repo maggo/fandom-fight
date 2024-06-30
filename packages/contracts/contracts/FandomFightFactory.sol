@@ -18,6 +18,9 @@ contract FandomFightFactory is UUPSUpgradeable, AccessControlUpgradeable {
     bytes32 public constant NONCE_SLOT =
         0x344d6e7af2c83053b6c1f2a1ad8d44a1ea3802bca13e7095f351c4cbad8d5b8b;
 
+    address public feeRecipient;
+    uint256 public feeBps;
+
     event FandomFightCreated(
         address indexed fandomFightProxy,
         address indexed fandomFightImplementation,
@@ -28,7 +31,11 @@ contract FandomFightFactory is UUPSUpgradeable, AccessControlUpgradeable {
         _disableInitializers();
     }
 
-    function init(address fandomFightMasterCopy) public initializer {
+    function init(
+        address fandomFightMasterCopy,
+        address feeRecipient_,
+        uint256 feeBps_
+    ) public initializer {
         __UUPSUpgradeable_init();
         __AccessControl_init();
 
@@ -37,6 +44,9 @@ contract FandomFightFactory is UUPSUpgradeable, AccessControlUpgradeable {
             .value = fandomFightMasterCopy;
 
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
+
+        feeRecipient = feeRecipient_;
+        feeBps = feeBps_;
     }
 
     function _authorizeUpgrade(
@@ -83,7 +93,9 @@ contract FandomFightFactory is UUPSUpgradeable, AccessControlUpgradeable {
             bidDelay_: bidDelay_,
             falloffDelay_: falloffDelay_,
             falloffDuration_: falloffDuration_,
-            beneficiary_: beneficiary_
+            beneficiary_: beneficiary_,
+            feeRecipient_: feeRecipient,
+            feeBps_: feeBps
         });
         emit FandomFightCreated(
             fandomFightProxy,
@@ -91,5 +103,15 @@ contract FandomFightFactory is UUPSUpgradeable, AccessControlUpgradeable {
             msg.sender
         );
         return fandomFightProxy;
+    }
+
+    function setFeeRecipient(
+        address feeRecipient_
+    ) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        feeRecipient = feeRecipient_;
+    }
+
+    function setFeeBps(uint256 feeBps_) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        feeBps = feeBps_;
     }
 }

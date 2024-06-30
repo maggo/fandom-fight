@@ -11,8 +11,6 @@ export async function Success({ ctx }: { ctx: FrameContext }) {
   const address = getAddress(req.param("address") ?? "");
   const choice = parseInt(req.param("choice") ?? "");
 
-  console.log(CHAIN.blockExplorers.default.url);
-
   const fandomFight = getContract({
     address,
     abi: FandomFightABI,

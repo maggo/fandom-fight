@@ -1,5 +1,8 @@
-import { time } from "@nomicfoundation/hardhat-network-helpers";
-import { loadFixture } from "@nomicfoundation/hardhat-toolbox-viem/network-helpers";
+import {
+  loadFixture,
+  setBalance,
+  time,
+} from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import hre from "hardhat";
 import {
@@ -13,7 +16,7 @@ describe("FandomFight", () => {
   async function deployFandomFightFixture() {
     const publicClient = await hre.viem.getPublicClient();
     // Contracts are deployed using the first signer/account by default
-    const [deployer, alice, bob] = await hre.viem.getWalletClients();
+    const [deployer, alice, bob, carl] = await hre.viem.getWalletClients();
 
     const fandomFightImpl = await hre.viem.deployContract("FandomFight");
     const fandomFightFactoryImpl = await hre.viem.deployContract(
@@ -26,7 +29,7 @@ describe("FandomFight", () => {
         encodeFunctionData({
           abi: fandomFightFactoryImpl.abi,
           functionName: "init",
-          args: [fandomFightImpl.address],
+          args: [fandomFightImpl.address, carl.account.address, 2000n],
         }),
       ]
     );
@@ -46,7 +49,7 @@ describe("FandomFight", () => {
       1n * 60n * 60n, // 1 hour purchase delay
       2n * 60n * 60n, // 2 hours falloff delay
       1n * 60n * 60n, // 1 hour falloff duration
-      alice.account.address,
+      alice.account.address, // beneficiary
     ]);
 
     const data = await publicClient.waitForTransactionReceipt({
@@ -61,7 +64,12 @@ describe("FandomFight", () => {
           eventName: "FandomFightCreated",
           ...log,
         })
-      )[0].args.fandomFightProxy;
+      )
+      .at(0)?.args?.fandomFightProxy;
+
+    if (!exampleFandomFightAddress) {
+      throw new Error("Failed to get example FandomFight address");
+    }
 
     const fandomFight = await hre.viem.getContractAt(
       "FandomFight",
@@ -75,6 +83,7 @@ describe("FandomFight", () => {
       deployer,
       alice,
       bob,
+      carl,
       fandomFight,
     };
   }
@@ -99,6 +108,53 @@ describe("FandomFight", () => {
 
     expect(await fandomFight.read.getCurrentMinimumPrice()).to.equal(
       parseEther("0.121")
+    );
+  });
+
+  it("should transfer all fees", async () => {
+    const { fandomFight, alice, bob, carl, publicClient } = await loadFixture(
+      deployFandomFightFixture
+    );
+
+    await fandomFight.write.bid([0], {
+      value: parseEther("0.1"),
+      account: bob.account,
+    });
+
+    // 20% fee
+    expect(await publicClient.getBalance(carl.account)).to.equal(
+      parseEther("10000.02")
+    );
+
+    // Remainder
+    expect(await publicClient.getBalance(alice.account)).to.equal(
+      parseEther("10000.08")
+    );
+
+    // Increase time by 3 hours
+    await time.increase(3 * 60 * 60);
+
+    await setBalance(alice.account.address, parseEther("10000"));
+    await setBalance(bob.account.address, parseEther("10000"));
+    await setBalance(carl.account.address, parseEther("10000"));
+
+    await fandomFight.write.bid([0], {
+      value: parseEther("0.1"),
+    });
+
+    // 20% fee
+    expect(await publicClient.getBalance(carl.account)).to.equal(
+      parseEther("10000.02")
+    );
+
+    // 10% cashback
+    expect(await publicClient.getBalance(bob.account)).to.equal(
+      parseEther("10000.01")
+    );
+
+    // Remainder
+    expect(await publicClient.getBalance(alice.account)).to.equal(
+      parseEther("10000.07")
     );
   });
 

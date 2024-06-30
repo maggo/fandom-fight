@@ -29,19 +29,19 @@ importers:
         version: 0.15.5(@nomicfoundation/hardhat-verify@2.0.8)(hardhat@2.22.5)
       '@nomicfoundation/hardhat-ignition-viem':
         specifier: ^0.15.0
-        version: 0.15.5(@nomicfoundation/hardhat-ignition@0.15.5)(@nomicfoundation/hardhat-viem@2.0.2)(@nomicfoundation/ignition-core@0.15.5)(hardhat@2.22.5)(viem@2.16.2)
+        version: 0.15.5(@nomicfoundation/hardhat-ignition@0.15.5)(@nomicfoundation/hardhat-viem@2.0.2)(@nomicfoundation/ignition-core@0.15.5)(hardhat@2.22.5)(viem@2.16.5)
       '@nomicfoundation/hardhat-network-helpers':
         specifier: ^1.0.0
         version: 1.0.11(hardhat@2.22.5)
       '@nomicfoundation/hardhat-toolbox-viem':
         specifier: ^3.0.0
-        version: 3.0.0(@nomicfoundation/hardhat-ignition-viem@0.15.5)(@nomicfoundation/hardhat-network-helpers@1.0.11)(@nomicfoundation/hardhat-verify@2.0.8)(@nomicfoundation/hardhat-viem@2.0.2)(@types/chai-as-promised@7.1.8)(@types/chai@4.3.16)(@types/mocha@10.0.7)(@types/node@20.14.8)(chai@4.4.1)(hardhat-gas-reporter@2.2.0)(hardhat@2.22.5)(solidity-coverage@0.8.12)(ts-node@10.9.2)(typescript@5.5.2)(viem@2.16.2)
+        version: 3.0.0(@nomicfoundation/hardhat-ignition-viem@0.15.5)(@nomicfoundation/hardhat-network-helpers@1.0.11)(@nomicfoundation/hardhat-verify@2.0.8)(@nomicfoundation/hardhat-viem@2.0.2)(@types/chai-as-promised@7.1.8)(@types/chai@4.3.16)(@types/mocha@10.0.7)(@types/node@20.14.9)(chai@4.4.1)(hardhat-gas-reporter@2.2.0)(hardhat@2.22.5)(solidity-coverage@0.8.12)(ts-node@10.9.2)(typescript@5.5.2)(viem@2.16.5)
       '@nomicfoundation/hardhat-verify':
         specifier: ^2.0.0
         version: 2.0.8(hardhat@2.22.5)
       '@nomicfoundation/hardhat-viem':
-        specifier: ^2.0.0
-        version: 2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.2)
+        specifier: ^2.0.2
+        version: 2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.5)
       '@types/chai':
         specifier: ^4.2.0
         version: 4.3.16
@@ -52,8 +52,8 @@ importers:
         specifier: '>=9.1.0'
         version: 10.0.7
       '@types/node':
-        specifier: '>=18.0.0'
-        version: 20.14.8
+        specifier: ^20.14.9
+        version: 20.14.9
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -77,13 +77,13 @@ importers:
         version: 0.8.12(hardhat@2.22.5)
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@20.14.8)(typescript@5.5.2)
+        version: 10.9.2(@types/node@20.14.9)(typescript@5.5.2)
       typescript:
         specifier: ~5.5.2
         version: 5.5.2
       viem:
-        specifier: ^2.7.6
-        version: 2.16.2(typescript@5.5.2)
+        specifier: ^2.16.5
+        version: 2.16.5(typescript@5.5.2)
 
   packages/frame:
     dependencies:
@@ -972,7 +972,7 @@ packages:
       ethereum-cryptography: 0.1.3
     dev: true
 
-  /@nomicfoundation/hardhat-ignition-viem@0.15.5(@nomicfoundation/hardhat-ignition@0.15.5)(@nomicfoundation/hardhat-viem@2.0.2)(@nomicfoundation/ignition-core@0.15.5)(hardhat@2.22.5)(viem@2.16.2):
+  /@nomicfoundation/hardhat-ignition-viem@0.15.5(@nomicfoundation/hardhat-ignition@0.15.5)(@nomicfoundation/hardhat-viem@2.0.2)(@nomicfoundation/ignition-core@0.15.5)(hardhat@2.22.5)(viem@2.16.5):
     resolution: {integrity: sha512-+OV6LNAJHg94pvu5znbkS1qVi6YKyD0jWSy8L6dT9Aw4uvuOKVB8bczGUAy74T7/8+CVFtD7nJg1m4nRV+0UPQ==}
     peerDependencies:
       '@nomicfoundation/hardhat-ignition': ^0.15.5
@@ -982,10 +982,10 @@ packages:
       viem: ^2.7.6
     dependencies:
       '@nomicfoundation/hardhat-ignition': 0.15.5(@nomicfoundation/hardhat-verify@2.0.8)(hardhat@2.22.5)
-      '@nomicfoundation/hardhat-viem': 2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.2)
+      '@nomicfoundation/hardhat-viem': 2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.5)
       '@nomicfoundation/ignition-core': 0.15.5
       hardhat: 2.22.5(ts-node@10.9.2)(typescript@5.5.2)
-      viem: 2.16.2(typescript@5.5.2)
+      viem: 2.16.5(typescript@5.5.2)
     dev: true
 
   /@nomicfoundation/hardhat-ignition@0.15.5(@nomicfoundation/hardhat-verify@2.0.8)(hardhat@2.22.5):
@@ -1017,7 +1017,7 @@ packages:
       hardhat: 2.22.5(ts-node@10.9.2)(typescript@5.5.2)
     dev: true
 
-  /@nomicfoundation/hardhat-toolbox-viem@3.0.0(@nomicfoundation/hardhat-ignition-viem@0.15.5)(@nomicfoundation/hardhat-network-helpers@1.0.11)(@nomicfoundation/hardhat-verify@2.0.8)(@nomicfoundation/hardhat-viem@2.0.2)(@types/chai-as-promised@7.1.8)(@types/chai@4.3.16)(@types/mocha@10.0.7)(@types/node@20.14.8)(chai@4.4.1)(hardhat-gas-reporter@2.2.0)(hardhat@2.22.5)(solidity-coverage@0.8.12)(ts-node@10.9.2)(typescript@5.5.2)(viem@2.16.2):
+  /@nomicfoundation/hardhat-toolbox-viem@3.0.0(@nomicfoundation/hardhat-ignition-viem@0.15.5)(@nomicfoundation/hardhat-network-helpers@1.0.11)(@nomicfoundation/hardhat-verify@2.0.8)(@nomicfoundation/hardhat-viem@2.0.2)(@types/chai-as-promised@7.1.8)(@types/chai@4.3.16)(@types/mocha@10.0.7)(@types/node@20.14.9)(chai@4.4.1)(hardhat-gas-reporter@2.2.0)(hardhat@2.22.5)(solidity-coverage@0.8.12)(ts-node@10.9.2)(typescript@5.5.2)(viem@2.16.5):
     resolution: {integrity: sha512-cr+aRozCtTwaRz5qc9OVY1kegWrnVwyhHZonICmlcm21cvJ31uvJnuPG688tMbjUvwRDw8tpZYZK0kI5M+4CKg==}
     peerDependencies:
       '@nomicfoundation/hardhat-ignition-viem': ^0.15.0
@@ -1036,22 +1036,22 @@ packages:
       typescript: ^5.0.4
       viem: ^2.7.6
     dependencies:
-      '@nomicfoundation/hardhat-ignition-viem': 0.15.5(@nomicfoundation/hardhat-ignition@0.15.5)(@nomicfoundation/hardhat-viem@2.0.2)(@nomicfoundation/ignition-core@0.15.5)(hardhat@2.22.5)(viem@2.16.2)
+      '@nomicfoundation/hardhat-ignition-viem': 0.15.5(@nomicfoundation/hardhat-ignition@0.15.5)(@nomicfoundation/hardhat-viem@2.0.2)(@nomicfoundation/ignition-core@0.15.5)(hardhat@2.22.5)(viem@2.16.5)
       '@nomicfoundation/hardhat-network-helpers': 1.0.11(hardhat@2.22.5)
       '@nomicfoundation/hardhat-verify': 2.0.8(hardhat@2.22.5)
-      '@nomicfoundation/hardhat-viem': 2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.2)
+      '@nomicfoundation/hardhat-viem': 2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.5)
       '@types/chai': 4.3.16
       '@types/chai-as-promised': 7.1.8
       '@types/mocha': 10.0.7
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
       chai: 4.4.1
       chai-as-promised: 7.1.2(chai@4.4.1)
       hardhat: 2.22.5(ts-node@10.9.2)(typescript@5.5.2)
       hardhat-gas-reporter: 2.2.0(hardhat@2.22.5)(typescript@5.5.2)
       solidity-coverage: 0.8.12(hardhat@2.22.5)
-      ts-node: 10.9.2(@types/node@20.14.8)(typescript@5.5.2)
+      ts-node: 10.9.2(@types/node@20.14.9)(typescript@5.5.2)
       typescript: 5.5.2
-      viem: 2.16.2(typescript@5.5.2)
+      viem: 2.16.5(typescript@5.5.2)
     dev: true
 
   /@nomicfoundation/hardhat-verify@2.0.8(hardhat@2.22.5):
@@ -1073,7 +1073,7 @@ packages:
       - supports-color
     dev: true
 
-  /@nomicfoundation/hardhat-viem@2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.2):
+  /@nomicfoundation/hardhat-viem@2.0.2(hardhat@2.22.5)(typescript@5.5.2)(viem@2.16.5):
     resolution: {integrity: sha512-Ek2lGjrt15IdDkq5+24CGeAQzlr/4UwUx0UKx6IVW/QOHGr1bk21KipUugFIyEjEltcgyUJcPJ02XFTcjgnwZA==}
     peerDependencies:
       hardhat: ^2.17.0
@@ -1084,7 +1084,7 @@ packages:
       hardhat: 2.22.5(ts-node@10.9.2)(typescript@5.5.2)
       lodash.memoize: 4.1.2
       typescript: 5.5.2
-      viem: 2.16.2(typescript@5.5.2)
+      viem: 2.16.5(typescript@5.5.2)
     transitivePeerDependencies:
       - zod
     dev: true
@@ -1560,13 +1560,13 @@ packages:
   /@types/bn.js@4.11.6:
     resolution: {integrity: sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==}
     dependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
     dev: true
 
   /@types/bn.js@5.1.5:
     resolution: {integrity: sha512-V46N0zwKRF5Q00AZ6hWtN0T8gGmDUaUzLWQvHFo5yThtVwK/VCenFY3wXVbOvNfajEpsTfQM4IN9k/d6gUVX3A==}
     dependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
     dev: true
 
   /@types/chai-as-promised@7.1.8:
@@ -1587,7 +1587,7 @@ packages:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
     dev: true
 
   /@types/json-schema@7.0.15:
@@ -1614,12 +1614,6 @@ packages:
     resolution: {integrity: sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==}
     dev: true
 
-  /@types/node@20.14.8:
-    resolution: {integrity: sha512-DO+2/jZinXfROG7j7WKFn/3C6nFwxy2lLpgLjEXJz+0XKphZlTLJ14mo8Vfg8X5BWN6XjyESXq+LcYdT7tR3bA==}
-    dependencies:
-      undici-types: 5.26.5
-    dev: true
-
   /@types/node@20.14.9:
     resolution: {integrity: sha512-06OCtnTXtWOZBJlRApleWndH4JsRVs1pDCc8dLSQp+7PpUpX3ePdHyeNSFTeSe7FtKyQkrlPvHwJOW3SLd8Oyg==}
     dependencies:
@@ -1628,7 +1622,7 @@ packages:
   /@types/pbkdf2@3.1.2:
     resolution: {integrity: sha512-uRwJqmiXmh9++aSu1VNEn3iIxWOhd8AHXNSdlaLfdAAdSTY9jYVeGWnzejM3dvrkbqE3/hyQkQQ29IFATEGlew==}
     dependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
     dev: true
 
   /@types/prop-types@15.7.12:
@@ -1651,7 +1645,7 @@ packages:
   /@types/secp256k1@4.0.6:
     resolution: {integrity: sha512-hHxJU6PAEUn0TP4S/ZOzuTUvJWuZ6eIKeNKb5RBpODvSl6hp1Wrw4s7ATY50rklRCScUDpHzVA/DQdSjJ3UoYQ==}
     dependencies:
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
     dev: true
 
   /@vercel/build-utils@8.2.2:
@@ -1895,20 +1889,6 @@ packages:
       typescript: 5.5.2
     dev: true
 
-  /abitype@1.0.4(typescript@5.5.2):
-    resolution: {integrity: sha512-UivtYZOGJGE8rsrM/N5vdRkUpqEZVmuTumfTuolm7m/6O09wprd958rx8kUBwVAAAhQDveGAgD0GJdBuR8s6tw==}
-    peerDependencies:
-      typescript: '>=5.0.4'
-      zod: ^3 >=3.22.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-      zod:
-        optional: true
-    dependencies:
-      typescript: 5.5.2
-    dev: true
-
   /abitype@1.0.5(typescript@5.5.2):
     resolution: {integrity: sha512-YzDhti7cjlfaBhHutMaboYB21Ha3rXR9QTkNJFzYC4kC8YclaiwPBBBJY8ejFdu2wnJeZCVZSMlQJ7fi8S6hsw==}
     peerDependencies:
@@ -1921,7 +1901,6 @@ packages:
         optional: true
     dependencies:
       typescript: 5.5.2
-    dev: false
 
   /acorn-import-attributes@1.9.5(acorn@8.12.0):
     resolution: {integrity: sha512-n02Vykv5uA3eHGM/Z2dQrcD56kL8TyDb2p1+0P83PClMnC/nc+anbQRhIOWnSq4Ke/KvDPrY3C9hDtC/A3eHnQ==}
@@ -3856,7 +3835,7 @@ packages:
       solc: 0.7.3(debug@4.3.5)
       source-map-support: 0.5.21
       stacktrace-parser: 0.1.10
-      ts-node: 10.9.2(@types/node@20.14.8)(typescript@5.5.2)
+      ts-node: 10.9.2(@types/node@20.14.9)(typescript@5.5.2)
       tsort: 0.0.1
       typescript: 5.5.2
       undici: 5.28.4
@@ -5790,7 +5769,7 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-node@10.9.2(@types/node@20.14.8)(typescript@5.5.2):
+  /ts-node@10.9.2(@types/node@20.14.9)(typescript@5.5.2):
     resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
     hasBin: true
     peerDependencies:
@@ -5809,7 +5788,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.14.8
+      '@types/node': 20.14.9
       acorn: 8.12.0
       acorn-walk: 8.3.3
       arg: 4.1.3
@@ -6077,29 +6056,6 @@ packages:
       - zod
     dev: false
 
-  /viem@2.16.2(typescript@5.5.2):
-    resolution: {integrity: sha512-qor3v1cJFR3jcPtcJxPbKfKURAH2agNf2IWZIaSReV6teNLERiu4Sr7kbqpkIeTAEpiDCVQwg336M+mub1m+pg==}
-    peerDependencies:
-      typescript: '>=5.0.4'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@adraffy/ens-normalize': 1.10.0
-      '@noble/curves': 1.2.0
-      '@noble/hashes': 1.3.2
-      '@scure/bip32': 1.3.2
-      '@scure/bip39': 1.2.1
-      abitype: 1.0.4(typescript@5.5.2)
-      isows: 1.0.4(ws@8.17.1)
-      typescript: 5.5.2
-      ws: 8.17.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-      - zod
-    dev: true
-
   /viem@2.16.5(typescript@5.5.2):
     resolution: {integrity: sha512-QDESALYDyLSP+pIr7adH3QPZ+3is16aOVMXXZE0X1GVbgL7PDMZQ8xIF1X/B1hgyqkBl2HhMpUaq6ksUdBV/YA==}
     peerDependencies:
@@ -6121,7 +6077,6 @@ packages:
       - bufferutil
       - utf-8-validate
       - zod
-    dev: false
 
   /viem@2.7.14(typescript@5.5.2):
     resolution: {integrity: sha512-5b1KB1gXli02GOQHZIUsRluNUwssl2t4hqdFAzyWPwJ744N83jAOBOjOkrGz7K3qMIv9b0GQt3DoZIErSQTPkQ==}
