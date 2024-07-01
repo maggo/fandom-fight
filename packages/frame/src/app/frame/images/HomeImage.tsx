@@ -10,7 +10,7 @@ import { getAddress, getContract, zeroAddress, type Address } from "viem";
 
 const neynar = new NeynarAPIClient(process.env.NEYNAR_API_KEY!);
 
-export async function BannerImage({ ctx }: { ctx: ImageContext }) {
+export async function HomeImage({ ctx }: { ctx: ImageContext }) {
   const { req } = ctx;
   const address = getAddress(req.param("address") ?? "");
 
